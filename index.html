@@ -116,22 +116,28 @@
          <div class="zentrieren"> 
                 <form>
                     <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                    <input type="hidden" name="icon" id="icon" class="icon" value="">
                     <input type="hidden" name="text" value="außer Haus">
                     <button class="button-9" id="button-9" role="button">außer Haus</button>
                 </form>
 
                 <form>
                     <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                    <input type="hidden" name="icon" id="icon" class="icon" value="">
                     <input type="hidden" name="text" value="bitte nicht stören">
                     <button class="button-9" id="button-9" role="button">bitte nicht stören</button>
                 </form>
                 <form>
                     <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
                     <input type="hidden" name="text" value="gleich zurück">
                     <button class="button-9" role="button">gleich zurück</button>
                 </form>
                 <form>
                     <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
                     <input type="hidden" name="text" value="Anwesend">
                     <button class="button-9" role="button">Anwesend</button>
                 </form>
@@ -152,26 +158,67 @@
             <div class="linie">
                 <form class="zeiteingabe">
                     <label for="myP">ab</label>
-                    <input type="time" id="myP" name="text" value="10">
+                    <input type="time" id="myP" name="text">
                     <label for="myP">wieder erreichbar</label>
                 </form>
                 <form>
                     <input id="url" type="hidden" name="url" value="api/custom?name=App1">
                     <input id="anzeigetext" value="" name="text" class="ausgeblendet">
+                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
                     <button class="button-9" id="button-9">abschicken</button>
                 </form>
             </div>
 
             <div class="linie">
                 <form class="zeiteingabe">
-                    <label for="myP">in Raum</label>
+                    <label for="myN">in Raum</label>
                     <input type="text" id="myN" name="text" min="000" max="600" step="100">
                 </form>
                 <form>
                     <input id="url" type="hidden" name="url" value="api/custom?name=App1">
                     <input id="anzeigenummer" value="" name="text" class="ausgeblendet">
+                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
                     <button class="button-9" id="button-9">abschicken</button>
                 </form>
+            </div>
+            <div class="linie">
+                
+                <form>
+                    <label for="individual_text">individiueller Text:</label>
+                    <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                    <input id="individual_text" value="" name="text" placeholder="Heute ist Hitzefrei">
+                    <button class="button-9" id="button-9">abschicken</button>
+                </form>
+            </div>
+            <div>
+                <h3 class="zwischenueberschrift">Einstellungen (!!! müssen vor Auswahl des Textes ausgewählt werden!!!)</h3>
+                <div>
+                    <h4>Icons:</h4>
+                    <div class="zentrieren">
+                        <form>
+                            <input type="hidden" name="icon" value="25780" id="iconNumber" class="iconNumber">
+                            <button class="button-9" id="button-9">Deutschland</button>
+                        </form>
+                        <form>
+                            <input type="hidden" name="icon" value="60171" id="iconNumber2" class="iconNumber">
+                            <button class="button-9" id="button-9">NBS-Logo</button>
+                        </form>
+                        <form>
+                            <input type="hidden" name="icon" value="39863" id="iconNumber">
+                            <button class="button-9" id="button-9">China</button>
+                        </form>
+                        <form>
+                            <input type="hidden" name="icon" value="46056" id="iconNumber">
+                            <button class="button-9" id="button-9">Spanien</button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <h4>Scroll speed</h4>
+                    <form>
+                        <input type="range" min="50" max="330" step="20" value="80" id="set-scrollSpeed">
+                    </form>
+                </div>
             </div>
     </div>   
     
@@ -182,16 +229,71 @@
         function zeiteingabe () {
             let html = document.getElementById("myP").value;
             document.getElementById("anzeigetext").value = 'ab '+ html + ' wieder erreichbar';
-            console.log(document.getElementById('anzeigetext').value);
+            //console.log(document.getElementById('anzeigetext').value);
         }
         setInterval(zeiteingabe, 500);
         // autom Raum
         function raumeingabe () {
             let nummer = document.getElementById("myN").value;
             document.getElementById("anzeigenummer").value = 'in Raum '+ nummer;
-            console.log(document.getElementById('anzeigetext').value);
+            //console.log(document.getElementById('anzeigetext').value);
         }
         setInterval(raumeingabe, 500);
+        // verteilen von scroll speed
+        function scrollSpeed () {
+            var elements = document.getElementsByClassName("scrollSpeed");
+            //var names = '';
+            for(var i = 0; i < elements.length; i++) {
+                let speed = document.getElementById("set-scrollSpeed").value;
+                elements[i].value = speed;
+            }
+            //console.log(elements.value)
+        }
+        setInterval(scrollSpeed, 500);
+
+        // icon zum text hinzufügen
+        /*
+        function iconpush () {
+            var elements = document.getElementsByClassName("icon");
+            //var names = '';
+            for(var i = 0; i < elements.length; i++) {
+                let iconNumber = document.getElementById("iconNumber").value;
+                elements[i].value = iconNumber;
+            }
+            console.log(elements.value)
+        }
+        setInterval(iconpush, 500);
+*/
+        
+        function iconpush () {
+            var elements = document.getElementsByClassName("icon");
+            //var names = '';
+            for(var i = 0; i < elements.length; i++) {
+
+                const elementsList = document.querySelectorAll("#iconNumber, #iconNumber2").values;
+                //const elementsArray = [...elementsList];
+
+                    elementsList.forEach(element => {
+                        console.log(elementsArray);
+                        elements[i].value = elementsList[element].value;
+                    });
+            }
+            console.log(elements.value)
+        }
+        setInterval(iconpush, 500);
+       /*
+        function iconpush () {
+            var elements = document.getElementsByClassName("icon");
+                for(var i = 0; i < elements.length; i++) {
+                    const iconNumber = document.querySelectorAll('.iconNumber').value;
+                    for(var j = 0; j < iconNumber.length; j++) {
+                    elements[i].value = iconNumber;
+                    }
+                }
+            console.log(elements.value);
+        }
+        setInterval(iconpush, 500);
+        */
         // abschicken
         async function postData(url = "", data = {}) {
             // Default options are marked with *
