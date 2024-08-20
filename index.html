@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,11 @@
     <style>
         :root {
             --select-border: #777;
-            --select-focus: blue;
+            --select-focus: rgb(0, 0, 255);
             --select-arrow: var(--select-border);
+            --active: rgb(244, 138, 0);
+            --block: rgba(147, 147, 147, 0);
+            --section: rgb(248, 248, 248);
         }
         *{
             font-family: poppins;
@@ -18,25 +21,35 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background: rgb(60, 60, 60);
         }
         h1{
             text-align: center;
+            color: white;
+        }
+        h4{
+            color: rgb(53, 47, 47);
+            text-decoration-color: black;
+            margin: 13px;
+        }
+        h3{
+            color: rgb(236, 236, 236);
         }
         select{
-            background: blue;
+            background: #3c978e;
             color: white;
             padding: 8px;
             font-size: 1em;
-            border: 3px solid rgb(152, 152, 152);
+            border: 3px solid var(--section);
             border-radius: 8px;
         }
         select:focus:active:focus-within{
-            border-color: rgb(152, 152, 152);
+            border-color: var(--section);
         }
         .button-9 {
             appearance: button;
             backface-visibility: hidden;
-            background-color: #405cf5;
+            background-color: #3c978e;
             border-radius: 6px;
             border-width: 0;
             box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
@@ -72,7 +85,7 @@
             box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
         }
         .zentrieren{
-            width: 100vw;
+            max-width: 100vw;
             display: flex;
             align-items: center;
             justify-content: space-around;
@@ -86,15 +99,24 @@
             flex-wrap: wrap;
             justify-content: space-around;
             align-items: center;
-            background-color: #b6b6b6;
+            background-color: var(--section);
             border-radius: 10px;
-            margin: 12px;
+            margin: 0px;
+            margin-top: 12px;
+            margin-bottom: 12px;
             padding: 5px;
         }
         .zeiteingabe{
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+        }
+        .individualTexteingabe{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
         }
         .headliner{
             display: flex;
@@ -105,14 +127,72 @@
             position: relative;
             margin-left: auto;
         }
-        .angeklickt{
-            color: rebeccapurple;
-            background-color: rebeccapurple;
-            font-size: 1000px;
-        }
-
         button.iconBtn.active { 
-        background-color:rgb(77, 255, 0); 
+        background-color: var(--active); 
+        }
+        button.text-select.active { 
+        background-color: var(--active); 
+        }
+        button.change.active { 
+        background-color: var(--active); 
+        }
+        .live{
+            display: flex;
+            justify-content: center;
+            background: rgba(119, 119, 119, 0);
+            padding: 10px;
+            border-radius: 12px;
+        
+        }
+        /*
+        iframe{
+           width: calc(5vw*16);
+           height: calc(5vw*6.27);
+           max-width: 800px;
+           max-height: 250px;
+        }
+        */
+        @media only screen and (max-width: 600px) {
+           iframe{
+            width: auto;
+           }
+        }
+        @media only screen and (min-width: 600px) {
+           iframe{
+           width: calc(5vw*16);
+           height: calc(5vw*6.27);
+           max-width: 800px;
+           max-height: 250px;
+            }
+        }
+        @media only screen and (max-width: 390px) {
+           iframe{
+            width: 250px;
+            height: 150px;
+            }
+        }
+        .allText{
+            background: var(--block);
+            margin: 15px;
+            padding: 10px;
+            border-radius: 12px;
+        }
+        .allSettings{
+            background: var(--block);
+            margin: 15px;
+            padding: 10px;
+            border-radius: 12px;
+        }
+        .category{
+            background: var(--section);
+            margin: 0px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            padding: 5px;
+            border-radius: 12px;
+        }
+        .margin-left{
+            margin-left: 25px;
         }
     </style>
 </head>
@@ -121,7 +201,7 @@
     <h1>Türschild Raum 416</h1>
     
     <div>
-        <div class="select">
+        <div class="select margin-left">
             <select id="standard-select">
               <option value="Option 1">Information 1</option>
               <option value="Option 2">Information 2</option>
@@ -129,88 +209,96 @@
             </select>
         </div>
         
-            <h3 class="zwischenueberschrift">Informationstext</h3>
-
-         <div class="zentrieren"> 
-                <form>
-                    <input id="url" type="hidden" name="url" value="api/custom?name=App1">
-                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
-                    <input type="hidden" name="icon" id="icon" class="icon" value="">
-                    <input type="hidden" name="text" value="außer Haus">
-                    <button class="button-9" id="button-9" role="button">außer Haus</button>
-                </form>
-
-                <form>
-                    <input id="url" type="hidden" name="url" value="api/custom?name=App1">
-                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
-                    <input type="hidden" name="icon" id="icon" class="icon" value="">
-                    <input type="hidden" name="text" value="bitte nicht stören">
-                    <button class="button-9" id="button-9" role="button">bitte nicht stören</button>
-                </form>
-                <form>
-                    <input id="url" type="hidden" name="url" value="api/custom?name=App1">
-                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
-                    <input type="hidden" name="text" value="gleich zurück">
-                    <button class="button-9" role="button">gleich zurück</button>
-                </form>
-                <form>
-                    <input id="url" type="hidden" name="url" value="api/custom?name=App1">
-                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
-                    <input type="hidden" name="text" value="Anwesend">
-                    <button class="button-9" role="button">Anwesend</button>
-                </form>
-           </div>
-            <!-- sonst funktioniert js nicht mehr einwandfrei
-            <div>
-                <form>
-                    <input id="url" type="hidden" name="url" value="api/custom?name=App1">
-                    <input type="hidden" name="text" value="um appt wieder erreichbar">
-                    <button>
-                        <label for="appt">um</label>
-                        <input type="time" id="value" name="text">
-                        <label for="appt">wieder erreichbar</label>
-                        <input type="text" name="text" id="demo">
-                    </button>
-                </form>
-            </div> -->
-            <div class="linie">
-                <form class="zeiteingabe">
-                    <label for="myP">ab</label>
-                    <input type="time" id="myP" name="text">
-                    <label for="myP">wieder erreichbar</label>
-                </form>
-                <form>
-                    <input id="url" type="hidden" name="url" value="api/custom?name=App1">
-                    <input id="anzeigetext" value="" name="text" class="ausgeblendet">
-                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
-                    <button class="button-9" id="button-9">abschicken</button>
-                </form>
-            </div>
-
-            <div class="linie">
-                <form class="zeiteingabe">
-                    <label for="myN">in Raum</label>
-                    <input type="text" id="myN" name="text" min="000" max="600" step="100">
-                </form>
-                <form>
-                    <input id="url" type="hidden" name="url" value="api/custom?name=App1">
-                    <input id="anzeigenummer" value="" name="text" class="ausgeblendet">
-                    <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
-                    <button class="button-9" id="button-9">abschicken</button>
-                </form>
-            </div>
-            <div class="linie">
+            <div class="allText">
+                <h3 class="zwischenueberschrift">Informationstext</h3>
                 
-                <form>
-                    <label for="individual_text">individueller Text:</label>
-                    <input id="url" type="hidden" name="url" value="api/custom?name=App1">
-                    <input id="individual_text" value="" name="text" placeholder="Heute ist Hitzefrei">
-                    <button class="button-9" id="button-9">abschicken</button>
-                </form>
-            </div>
-            <div>
-                <h3 class="zwischenueberschrift">Einstellungen (!!! müssen vor Auswahl des Textes ausgewählt werden!!!)</h3>
+                <div class="zentrieren category">
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="text" value="außer Haus">
+                        <button class="button-9 text-select" id="button-9" role="button">außer Haus</button>
+                    </form>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="text" value="bitte nicht stören">
+                        <button class="button-9 text-select" id="button-9" role="button">bitte nicht stören</button>
+                    </form>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="text" value="gleich zurück">
+                        <button class="button-9 text-select" role="button">gleich zurück</button>
+                    </form>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="text" value="Anwesend">
+                        <button class="button-9 text-select" role="button">Anwesend</button>
+                    </form>
+                           </div>
+                <!-- sonst funktioniert js nicht mehr einwandfrei
                 <div>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input type="hidden" name="text" value="um appt wieder erreichbar">
+                        <button>
+                            <label for="appt">um</label>
+                            <input type="time" id="value" name="text">
+                            <label for="appt">wieder erreichbar</label>
+                            <input type="text" name="text" id="demo">
+                        </button>
+                    </form>
+                </div> -->
+                <div class="linie">
+                    <form class="zeiteingabe">
+                        <label for="myP">ab</label>
+                        <input type="time" id="myP" name="text">
+                        <label for="myP">wieder erreichbar</label>
+                    </form>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="anzeigetext" value="" name="text" class="ausgeblendet">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <button class="button-9 text-select" id="button-9">abschicken</button>
+                    </form>
+                </div>
+                <div class="linie">
+                    <form class="zeiteingabe">
+                        <label for="myN">in Raum</label>
+                        <input type="text" id="myN" name="text">
+                    </form>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="anzeigenummer" value="" name="text" class="ausgeblendet">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <button class="button-9 text-select" id="button-9">abschicken</button>
+                    </form>
+                </div>
+                <div class="linie">
+                    
+                    <form class="individualTexteingabe">
+                        <div>
+                            <label for="individual_text">individueller Text:</label>
+                            <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                            <input id="individual_text" value="" name="text" placeholder="Heute ist Hitzefrei">
+                            <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                            <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        </div>
+                        <div><button class="button-9 text-select" id="button-9">abschicken</button></div>
+                    </form>
+                </div>
+            </div>
+            <div class="allSettings">
+                <h3 class="zwischenueberschrift">Einstellungen (!!! müssen vor Auswahl des Textes ausgewählt werden!!!)</h3>
+                <div class="category">
                     <div class="headliner">
                         <div>
                             <h4>Icons:</h4>
@@ -221,7 +309,7 @@
                                 <button class="button-9 iconBtn active" id="button-9" onclick="icon0()">kein Icon</button>
                             </form>
                         </div>
-                    </div>
+                    </div> 
                     <div class="zentrieren">
                         <form>
                             <input type="hidden" name="icon" value="25780" id="iconNumber1">
@@ -233,7 +321,7 @@
                         </form>
                         <form>
                             <input type="hidden" name="icon" value="39863" id="iconNumber3">
-                            <button class="button-9 iconBtn" id="button-9" onclick="activeColor(), icon3()">China</button>
+                            <button class="button-9 iconBtn" id="button-9" onclick="icon3()">China</button>
                         </form>
                         <form>
                             <input type="hidden" name="icon" value="46056" id="iconNumber4">
@@ -241,7 +329,7 @@
                         </form>
                     </div>
                 </div>
-                <div>
+                <div class="category">
                     <h4>Power:</h4>
                     <div class="zentrieren">
                         <form>
@@ -256,20 +344,24 @@
                         </form>
                     </div>
                 </div>
-                <div>
-                    <h4>automatischer App-Wechsel + Steuerung</h4>
+                <div class="category">
+                    <h4>automatischer App-Wechsel:</h4>
                     <div class="zentrieren">
                         <form>
                             <input id="url" type="hidden" name="url" value="api/settings">
                             <input type="hidden" name="ATRANS" value="true">
-                            <button class="button-9" id="button-9">Aktivieren</button>
+                            <button class="button-9 change" id="button-9">Aktiviert</button>
                         </form>
                         <form>
                             <input id="url" type="hidden" name="url" value="api/settings">
                             <input type="hidden" name="ATRANS" value="false" selected="">
-                            <button class="button-9" id="button-9">Deaktivieren</button>
+                            <button class="button-9 change active" id="button-9">Deaktiviert</button>
                         </form>
                     </div>
+                   
+                </div>
+                <div class="category">
+                    <h4>Steuerung:</h4>
                     <div class="zentrieren">
                         <form class="changeApp">
                             <input id="url" type="hidden" name="url" value="api/previousapp">
@@ -281,12 +373,18 @@
                         </form>
                     </div>
                 </div>
-                <div>
-                    <h4>Scroll speed</h4>
-                    <form>
-                        <input type="range" min="50" max="330" step="20" value="80" id="set-scrollSpeed">
-                    </form>
+                <div class="category">
+                    <h4>Live View: <br> (Wenn die Anzeige ausgeschalten wird, bleibt die Live View trotzdem an.)</h4>
+                    <div class="live">
+                        <iframe src="http://192.168.0.21/screen" frameborder="0" scrolling="no"></iframe>
+                    </div>
                 </div>
+            </div>
+            <div>
+                <h4>Scroll speed</h4>
+                <form>
+                    <input type="number" min="50" max="330" step="20" value="80" id="set-scrollSpeed">
+                </form>
             </div>
     </div>   
     
@@ -377,6 +475,26 @@
             button.classList.remove("active");
             });
             evt.target.classList.add("active");
+            }
+        });
+        // ändern Hintergrund des als letztes ausgewählten textes
+        let text = document.querySelectorAll(".text-select");
+        document.addEventListener("click", function(evts){
+        if(evts.target.classList.contains("text-select")){
+            text.forEach(function(texte){
+            texte.classList.remove("active");
+            });
+            evts.target.classList.add("active");
+            }
+        });
+        // ändern Hintergrundgarbe von autom. App wechsel
+        let appWechsel = document.querySelectorAll(".change");
+        document.addEventListener("click", function(app){
+        if(app.target.classList.contains("change")){
+            appWechsel.forEach(function(apps){
+            apps.classList.remove("active");
+            });
+            app.target.classList.add("active");
             }
         });
 
