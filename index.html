@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Kettis Türschild</title>
     <style>
         :root {
             --select-border: #777;
@@ -26,6 +26,18 @@
         h1{
             text-align: center;
             color: white;
+        }
+        .fixed-header{
+            position: sticky;
+            top: 0;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            margin-bottom: 18px;
+            display: block;
+            background: rgb(60, 60, 60);
+            z-index: 10000000;
+            filter: drop-shadow(0px 21px 13px #3d3d3d);
+           
         }
         h4{
             color: rgb(53, 47, 47);
@@ -198,7 +210,9 @@
 </head>
 <body>
 
-    <h1>Türschild Raum 416</h1>
+    <div class="fixed-header">
+        <h1>Türschild Raum 416</h1>
+    </div>
     
     <div>
         <div class="select margin-left">
@@ -242,19 +256,6 @@
                         <button class="button-9 text-select" role="button">Anwesend</button>
                     </form>
                            </div>
-                <!-- sonst funktioniert js nicht mehr einwandfrei
-                <div>
-                    <form>
-                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
-                        <input type="hidden" name="text" value="um appt wieder erreichbar">
-                        <button>
-                            <label for="appt">um</label>
-                            <input type="time" id="value" name="text">
-                            <label for="appt">wieder erreichbar</label>
-                            <input type="text" name="text" id="demo">
-                        </button>
-                    </form>
-                </div> -->
                 <div class="linie">
                     <form class="zeiteingabe">
                         <label for="myP">ab</label>
