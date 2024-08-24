@@ -13,6 +13,11 @@
             --active: rgb(244, 138, 0);
             --block: rgba(147, 147, 147, 0);
             --section: rgb(248, 248, 248);
+            --alert: rgb(255, 0, 0);
+            --color: rgb(48, 217, 48);
+            --text: rgb(44, 44, 238);
+            --transition: rgb(188, 0, 141);
+            --time: rgb(174, 177, 172);
         }
         *{
             font-family: poppins;
@@ -26,6 +31,8 @@
         h1{
             text-align: center;
             color: white;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
         .fixed-header{
             position: sticky;
@@ -118,10 +125,23 @@
             margin-bottom: 12px;
             padding: 5px;
         }
+        .line{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--time);
+            border-radius: 10px;
+            margin: 0px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            padding: 5px;
+        }
         .zeiteingabe{
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            width: 70%;
         }
         .individualTexteingabe{
             display: flex;
@@ -194,6 +214,8 @@
             margin: 15px;
             padding: 10px;
             border-radius: 12px;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
         .category{
             background: var(--section);
@@ -206,6 +228,108 @@
         .margin-left{
             margin-left: 25px;
         }
+        .zwischenueberschrift{
+            margin: 0;
+        }
+        .fast{
+            width: 171px;
+        }
+        .iconBtn{
+            width: 138px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+            /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        .allSettings.secret{
+            margin: 15px;
+            padding: 10px;
+            border-radius: 12px;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        .advanced{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--alert);
+            border-radius: 10px;
+            margin: 0px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            padding: 5px;
+        }
+        .hidden{
+            display: none;
+        }
+        .redBack{
+            color: rgb(255, 255, 255);
+        }
+        .col{
+            background: var(--color);
+        }
+        .txt{
+            background-color: var(--text);
+        }
+        .trans{
+            background-color: var(--transition);
+        }
     </style>
 </head>
 <body>
@@ -215,6 +339,7 @@
     </div>
     
     <div>
+        <!--
         <div class="select margin-left">
             <select id="standard-select">
               <option value="Option 1">Information 1</option>
@@ -222,38 +347,47 @@
               <span class="focus"></span>
             </select>
         </div>
+        -->
         
             <div class="allText">
                 <h3 class="zwischenueberschrift">Informationstext</h3>
                 
                 <div class="zentrieren category">
                     <form>
-                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
                         <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
                         <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
                         <input type="hidden" name="text" value="außer Haus">
-                        <button class="button-9 text-select" id="button-9" role="button">außer Haus</button>
+                        <button class="button-9 text-select fast" id="button-9" role="button">außer Haus</button>
                     </form>
                     <form>
-                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
                         <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
                         <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
                         <input type="hidden" name="text" value="bitte nicht stören">
-                        <button class="button-9 text-select" id="button-9" role="button">bitte nicht stören</button>
+                        <button class="button-9 text-select fast" id="button-9" role="button">bitte nicht stören</button>
                     </form>
                     <form>
-                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
                         <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
                         <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
                         <input type="hidden" name="text" value="gleich zurück">
-                        <button class="button-9 text-select" role="button">gleich zurück</button>
+                        <button class="button-9 text-select fast" role="button">gleich zurück</button>
                     </form>
                     <form>
-                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
                         <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
                         <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
                         <input type="hidden" name="text" value="Anwesend">
-                        <button class="button-9 text-select" role="button">Anwesend</button>
+                        <button class="button-9 text-select fast" role="button">Anwesend</button>
                     </form>
                            </div>
                 <div class="linie">
@@ -263,10 +397,12 @@
                         <label for="myP">wieder erreichbar</label>
                     </form>
                     <form>
-                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
                         <input id="anzeigetext" value="" name="text" class="ausgeblendet">
                         <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
                         <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
                         <button class="button-9 text-select" id="button-9">abschicken</button>
                     </form>
                 </div>
@@ -276,22 +412,26 @@
                         <input type="text" id="myN" name="text">
                     </form>
                     <form>
-                        <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
                         <input id="anzeigenummer" value="" name="text" class="ausgeblendet">
                         <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
                         <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
                         <button class="button-9 text-select" id="button-9">abschicken</button>
                     </form>
                 </div>
                 <div class="linie">
                     
                     <form class="individualTexteingabe">
-                        <div>
+                        <div class="zeiteingabe">
                             <label for="individual_text">individueller Text:</label>
-                            <input id="url" type="hidden" name="url" value="api/custom?name=App1">
+                            <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
                             <input id="individual_text" value="" name="text" placeholder="Heute ist Hitzefrei">
                             <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                            <input type="hidden" name="color" id="color" class="color" value="">
                             <input type="hidden" name="icon" id="icon" class="icon" value="">
+                            <input type="hidden" name="effect" class="effect" value="">
                         </div>
                         <div><button class="button-9 text-select" id="button-9">abschicken</button></div>
                     </form>
@@ -351,7 +491,7 @@
                         <form>
                             <input id="url" type="hidden" name="url" value="api/settings">
                             <input type="hidden" name="ATRANS" value="true">
-                            <button class="button-9 change" id="button-9">Aktiviert</button>
+                            <button class="button-9 change" id="button-9" style="width: 125px;">Aktiviert</button>
                         </form>
                         <form>
                             <input id="url" type="hidden" name="url" value="api/settings">
@@ -370,7 +510,7 @@
                         </form>
                         <form class="changeApp">
                             <input id="url" type="hidden" name="url" value="api/nextapp">
-                            <button class="button-9">Nächste App</button>
+                            <button class="button-9" style="width: 152px;">Nächste App</button>
                         </form>
                     </div>
                 </div>
@@ -380,18 +520,287 @@
                         <iframe src="http://192.168.0.21/screen" frameborder="0" scrolling="no"></iframe>
                     </div>
                 </div>
+                <div class="linie">
+                    <div class="activate">
+                        <p>erweiterte Einstellungen aktivieren</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round" onclick="hide()"></span>
+                    </label>                  
+                </div>
             </div>
-            <div>
-                <h4>Scroll speed</h4>
-                <form>
-                    <input type="number" min="50" max="330" step="20" value="80" id="set-scrollSpeed">
-                </form>
+        
+            <div class="allSettings secret" id="secret" style="display: block;">
+                <div class="advanced">
+                    <h4 class="redBack">Einstellungen zurücksetzen</h4>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/resetSettings">
+                        <button class="button-9">Reset</button>
+                    </form>
+                </div>
+                <div class="advanced">
+                    <h4 class="redBack">Anzeige neu starten</h4>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/reboot">
+                        <button class="button-9">Reboot</button>
+                    </form>
+                </div>
+                <div>
+                    <h3>Einmalige Einstellungen</h3>
+                    <div class="advanced txt">
+                        <h4 class="redBack">Textfarbe</h4>
+                        <form>
+                            <input type="color" class="farbe" id="farbe" value="#ffffff">
+                        </form>
+                    </div>
+                    <div class="advanced txt">
+                        <h4 class="redBack">Hintergrundeffekt</h4>
+                        <form>
+                            <select name="effect" id="eff">
+                                <option value="">-</option>
+                                <option value="TwinklingStars">TwinklingStars</option>
+                                <option value="PlasmaCloud">PlasmaCloud</option>
+                                <option value="ColorWaves">ColorWaves</option>
+                                <option value="Matrix">Matrix</option>
+                                <option value="SwirlOut">SwirlOut</option>
+                                <option value="LookingEyes">LookingEyes</option>
+                                <option value="BrickBreaker">BrickBreaker</option>
+                                <option value="PingPong">PingPong</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="advanced txt">
+                        <h4 class="redBack">Scroll speed</h4>
+                        <form>
+                            <input type="number" min="50" max="330" step="10" value="160" id="set-scrollSpeed">
+                        </form>
+                    </div>
+                    <div class="advanced trans">  
+                        <h4 class="redBack">Dauer der Übergänge</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <input type="range" name="TSPEED" min="100" max="2000" step="100" value="500">
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>          
+                    <div class="advanced trans">
+                        <h4 class="redBack">Übergangseffekt</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="TEFF">
+                                <option value="0">Random</option>
+                                <option value="1" selected="">Slide</option>
+                                <option value="2">Dim</option>
+                                <option value="3">Zoom</option>
+                                <option value="4">Rotate</option>
+                                <option value="5">Pixelate</option>
+                                <option value="6">Curtain</option>
+                                <option value="7">Ripple</option>
+                                <option value="8">Blink</option>
+                                <option value="9">Reload</option>
+                                <option value="10">Fade</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>          
+                    <div class="advanced">
+                        <h4 class="redBack">Dateformats</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="DFORMAT">
+                                <option value="%d.%m.%y">16.04.22</option>
+                                <option value="%d.%m">16.04</option>
+                                <option value="%y-%m-%d">22-04-16</option>
+                                <option value="%m-%d">04-16</option>
+                                <option value="%m/%d/%y">04/16/22</option>
+                                <option value="%m/%d">04/16</option>
+                                <option value="%d/%m/%y">16/04/22</option>
+                                <option value="%d/%m">16/04</option>
+                                <option value="%m-%d-%y">04-16-22</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>       
+                    <div class="advanced">
+                        <h4 class="redBack">Helligkeit</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <input type="range" min="1" max="255" step="10" name="BRI" value="30">
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>        
+                    <div class="advanced col">
+                        <h4 class="redBack">Date app Farbe</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="DATE_COL">
+                                <option value="ffffff">weiß</option>
+                                <option value="ff0000">rot</option>
+                                <option value="00ff00">grün</option>
+                                <option value="0000ff">blau</option>
+                                <option value="ffff00">gelb</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>        
+                    <div class="advanced col">
+                        <h4 class="redBack">Temperature app Farbe</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="TEMP_COL">
+                                <option value="ffffff">weiß</option>
+                                <option value="ff0000">rot</option>
+                                <option value="00ff00">grün</option>
+                                <option value="0000ff">blau</option>
+                                <option value="ffff00">gelb</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>
+                    <div class="advanced col">
+                        <h4 class="redBack">Humidity app Farbe</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="HUM_COL">
+                                <option value="ffffff">weiß</option>
+                                <option value="ff0000">rot</option>
+                                <option value="00ff00">grün</option>
+                                <option value="0000ff">blau</option>
+                                <option value="ffff00">gelb</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>
+                    <div class="advanced col">
+                        <h4 class="redBack">Battery app Farbe</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="BAT_COL">
+                                <option value="ffffff">weiß</option>
+                                <option value="000000">schwarz</option>
+                                <option value="ff0000">rot</option>
+                                <option value="00ff00">grün</option>
+                                <option value="0000ff">blau</option>
+                                <option value="ffff00">gelb</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <h3>Time-App Settings</h3>
+                    <div class="advanced">
+                        <form class="rahmen">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <div class="line">
+                                <p>Time app Farbe</p>
+                                <select name="TIME_COL">
+                                    <option value="ffffff">weiß</option>
+                                    <option value="ff0000">rot</option>
+                                    <option value="00ff00">grün</option>
+                                    <option value="0000ff">blau</option>
+                                    <option value="ffff00">gelb</option>
+                                </select>
+                            </div>                           
+                            <div class="line">
+                                <p>calendar header color-funktioniert nur bei timestyle 1</p>
+                                <select name="CHCOL">
+                                    <option value="ffffff">weiß</option>
+                                    <option value="000000">schwarz</option>
+                                    <option value="ff0000" selected="">rot</option>
+                                    <option value="00ff00">grün</option>
+                                    <option value="0000ff">blau</option>
+                                    <option value="ffff00">gelb</option>
+                                </select>
+                            </div>                            
+                            <div class="line">
+                                <p>calendar body color</p>
+                                <select name="CBCOL">
+                                    <option value="ffffff" selected="">weiß</option>
+                                    <option value="000000">schwarz</option>
+                                    <option value="ff0000">rot</option>
+                                    <option value="00ff00">grün</option>
+                                    <option value="0000ff">blau</option>
+                                    <option value="ffff00">gelb</option>
+                                </select>
+                            </div>                         
+                            <div class="line">
+                                <p>calendar text color</p>
+                                <select name="CTCOL">
+                                    <option value="ffffff">weiß</option>
+                                    <option value="000000" selected="">schwarz</option>
+                                    <option value="ff0000">rot</option>
+                                    <option value="00ff00">grün</option>
+                                    <option value="0000ff">blau</option>
+                                    <option value="ffff00">gelb</option>
+                                </select>
+                            </div>                            
+                            <div class="line">
+                                <p>Timestyles</p>
+                                <select name="TMODE">
+                                    <option value="0">0</option>
+                                    <option value="1" selected="">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                           
+                            <div class="line">
+                                <p>Timeformats (erste 2 nur bei timestyle 0 möglich)</p>
+                                <select name="TFORMAT">
+                                    <option value="%H:%M:%S">13:30:45</option>
+                                    <option value="%l:%M:%S ">1:30:45</option>
+                                    <option value="%H:%M">13:30</option>
+                                    <option value="%H %M">13.30 with blinking colon</option>
+                                    <option value="%l:%M">1:30</option>
+                                    <option value="%l %M">1:30 with blinking colon</option>
+                                    <option value="%l:%M %p">1:30 PM</option>
+                                    <option value="%l %M %p">1:30 PM with blinking colon</option>
+                                </select>
+                            </div>
+                            
+                            <div class="line">
+                                <p>anschließender reboot vorausgesetzt:</p>
+                                <select name="TIM">
+                                    <option value="true" selected="">Time app anzeigen</option>
+                                    <option value="false">Time app ausblenden</option>
+                                </select>
+                            </div>
+                                
+                            <input type="hidden" name="stack" value="false">
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>
+                </div>
             </div>
     </div>   
     
     
     <a href="html/index_original.html">zur originalwebsite</a>
     <script>
+        //hintergrundeffekt verteilen
+        function eff () {
+            let effectName = document.getElementById('eff').value;
+            var elements = document.getElementsByClassName("effect");
+            for(var i = 0; i < elements.length; i++) {
+                //console.log(effectName); 
+                elements[i].value = effectName;
+            }
+        }
+        setInterval(eff, 500);
+        //farbe verteilen
+        function color () {
+            let farbcode = document.getElementById('farbe').value;
+            var elements = document.getElementsByClassName("color");
+            for(var i = 0; i < elements.length; i++) {
+                let modifiedColor  = farbcode.replace("#", "");
+                //console.log(modifiedColor); 
+                elements[i].value = modifiedColor;
+            }
+        }
+        setInterval(color, 500);
         // autom uhrzeit
         function zeiteingabe () {
             let html = document.getElementById("myP").value;
@@ -498,7 +907,15 @@
             app.target.classList.add("active");
             }
         });
-
+        //anzeigen oder ausschalten von erweiterten Einstellungen
+        function hide() {
+        var x = document.getElementById("secret");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        } 
         // abschicken
         async function postData(url = "", data = {}) {
             // Default options are marked with *
