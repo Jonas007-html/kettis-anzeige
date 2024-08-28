@@ -39,11 +39,11 @@
             top: 0;
             padding-top: 1px;
             padding-bottom: 1px;
-            margin-bottom: 18px;
+            margin-bottom: 8px;
             display: block;
             background: rgb(60, 60, 60);
             z-index: 10000000;
-            filter: drop-shadow(0px 21px 13px #3d3d3d);
+            filter: drop-shadow(0px 10px 5px #3d3d3d);
            
         }
         h4{
@@ -107,7 +107,7 @@
             max-width: 100vw;
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-evenly;
             flex-wrap: wrap;
         }
         .ausgeblendet{
@@ -208,6 +208,8 @@
             margin: 15px;
             padding: 10px;
             border-radius: 12px;
+            margin-top: 0;
+            padding-top: 0;
         }
         .allSettings{
             background: var(--block);
@@ -350,8 +352,43 @@
         -->
         
             <div class="allText">
-                <h3 class="zwischenueberschrift">Informationstext</h3>
+                <!--<h3 class="zwischenueberschrift">Informationstext</h3>-->
                 
+                <div class="headliner">
+                    <div>
+                        <h4 class="redBack">Icons:</h4>
+                    </div>
+                    <div class="rechtsbuendig">
+                        <form>
+                            <input type="hidden" name="icon" value="-1" id="iconNumber">
+                            <button class="button-9 iconBtn active" id="button-9" onclick="icon0()" style="width: unset; border-radius: 19px;">kein Icon</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="category">
+                     
+                    <div class="zentrieren">
+                        <form>
+                            <input type="hidden" name="icon" value="25780" id="iconNumber1">
+                            <button class="button-9 iconBtn" id="button-9" onclick="icon1()">Deutschland</button>
+                        </form>
+                        <form>
+                            <input type="hidden" name="icon" value="60171" id="iconNumber2">
+                            <button class="button-9 iconBtn" id="button-9" onclick="icon2()">NBS-Logo</button>
+                        </form>
+                        <form>
+                            <input type="hidden" name="icon" value="39863" id="iconNumber3">
+                            <button class="button-9 iconBtn" id="button-9" onclick="icon3()">China</button>
+                        </form>
+                        <form>
+                            <input type="hidden" name="icon" value="46056" id="iconNumber4">
+                            <button class="button-9 iconBtn" id="button-9" onclick="icon4()">Spanien</button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="redBack">Text:</h4>
+                </div>
                 <div class="zentrieren category">
                     <form>
                         <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
@@ -445,38 +482,7 @@
                 </div>
             </div>
             <div class="allSettings">
-                <h3 class="zwischenueberschrift">Einstellungen (!!! müssen vor Auswahl des Textes ausgewählt werden!!!)</h3>
-                <div class="category">
-                    <div class="headliner">
-                        <div>
-                            <h4>Icons:</h4>
-                        </div>
-                        <div class="rechtsbuendig">
-                            <form>
-                                <input type="hidden" name="icon" value="-1" id="iconNumber">
-                                <button class="button-9 iconBtn active" id="button-9" onclick="icon0()">kein Icon</button>
-                            </form>
-                        </div>
-                    </div> 
-                    <div class="zentrieren">
-                        <form>
-                            <input type="hidden" name="icon" value="25780" id="iconNumber1">
-                            <button class="button-9 iconBtn" id="button-9" onclick="icon1()">Deutschland</button>
-                        </form>
-                        <form>
-                            <input type="hidden" name="icon" value="60171" id="iconNumber2">
-                            <button class="button-9 iconBtn" id="button-9" onclick="icon2()">NBS-Logo</button>
-                        </form>
-                        <form>
-                            <input type="hidden" name="icon" value="39863" id="iconNumber3">
-                            <button class="button-9 iconBtn" id="button-9" onclick="icon3()">China</button>
-                        </form>
-                        <form>
-                            <input type="hidden" name="icon" value="46056" id="iconNumber4">
-                            <button class="button-9 iconBtn" id="button-9" onclick="icon4()">Spanien</button>
-                        </form>
-                    </div>
-                </div>
+                <h3 class="zwischenueberschrift">Einstellungen:</h3>
                 <div class="category">
                     <h4>Power:</h4>
                     <div class="zentrieren">
