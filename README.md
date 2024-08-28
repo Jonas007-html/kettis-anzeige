@@ -1,1 +1,1 @@
-/ updates are following
+/ updates follow soon
