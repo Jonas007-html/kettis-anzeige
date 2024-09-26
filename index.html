@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="json/manifest.json" />
     <title>Kettis Türschild</title>
     <style>
         :root {
@@ -47,6 +48,11 @@
            
         }
         h4{
+            color: rgb(53, 47, 47);
+            text-decoration-color: black;
+            margin: 13px;
+        }
+        h7{
             color: rgb(53, 47, 47);
             text-decoration-color: black;
             margin: 13px;
@@ -346,7 +352,7 @@
 <body>
 
     <div class="fixed-header">
-        <h1>Türschild Raum 416</h1>
+        <h1>Türschild Raum 418</h1>
     </div>
     
     <div>
@@ -460,7 +466,7 @@
                 <div class="linie">
                     <form class="zeiteingabe">
                         <label for="myN">in Raum</label>
-                        <input type="text" id="myN" name="text">
+                        <input type="text" id="myN" name="text" placeholder="522">
                     </form>
                     <form>
                         <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
@@ -544,7 +550,8 @@
                     </div>
                 </div>
                 <div class="category">
-                    <h4>Live View: <br> (Wenn die Anzeige ausgeschalten wird, bleibt die Live View trotzdem an.)</h4>
+                    <h4>Live View: </h4>
+                    <h7>(Wenn die Anzeige ausgeschalten wird, bleibt die Live View trotzdem an.)</h7>
                     <div class="live">
                         <iframe src="http://192.168.0.21/screen" frameborder="0" scrolling="no"></iframe>
                     </div>
@@ -574,6 +581,22 @@
                     <form>
                         <input id="url" type="hidden" name="url" value="api/reboot">
                         <button class="button-9">Reboot</button>
+                    </form>
+                </div>
+                <div class="advanced">
+                    <h4 class="redBack">Tastenfunktionalität Ein-/Ausschalten</h4>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/settings">                       
+                    </form>
+                    <form class="">
+                        <input id="url" type="hidden" name="url" value="api/settings">
+                        <input type="hidden" name="BLOCKN" value="false">
+                        <button value="Submit" type="submit" class="button-9">Tasten reagieren</button>
+                    </form>
+                    <form class="">
+                        <input id="url" type="hidden" name="url" value="api/settings">
+                        <input type="hidden" name="BLOCKN" value="true">
+                        <button value="Submit" type="submit" class="button-9">Tasten reagieren nicht</button>
                     </form>
                 </div>
                 <div>
