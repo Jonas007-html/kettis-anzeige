@@ -351,7 +351,7 @@
 <body>
 
     <div class="fixed-header">
-        <h1>Türschild Raum 418</h1>
+        <h1>Türschild Raum 414</h1>
     </div>
     
     <div>
@@ -367,7 +367,7 @@
         
             <div class="allText">
                 <!--<h3 class="zwischenueberschrift">Informationstext</h3>-->
-                
+                <!--
                 <div class="headliner">
                     <div>
                         <h4 class="redBack">Icons:</h4>
@@ -400,6 +400,7 @@
                         </form>
                     </div>
                 </div>
+                -->
                 <div>
                     <h4 class="redBack">Text:</h4>
                 </div>
@@ -552,7 +553,7 @@
                     <h4>Live View: </h4>
                     <h7>(Wenn die Anzeige ausgeschalten wird, bleibt die Live View trotzdem an.)</h7>
                     <div class="live">
-                        <iframe src="http://earlgreyhot.ddns.net:60422/screen" frameborder="0" scrolling="no"></iframe>
+                        <iframe src="http://earlgreyhot.ddns.net:60412/screen" frameborder="0" scrolling="no"></iframe>
                     </div>
                 </div>
                 <div class="linie">
@@ -625,7 +626,7 @@
                     <div class="advanced txt">
                         <h4 class="redBack">Scroll speed</h4>
                         <form>
-                            <input type="number" min="50" max="330" step="10" value="160" id="set-scrollSpeed">
+                            <input type="number" min="50" max="330" step="10" value="140" id="set-scrollSpeed">
                         </form>
                     </div>
                     <div class="advanced txt">
@@ -894,7 +895,7 @@
                 <a href="html/index_original.html">zur originalwebsite</a>
             </div>
             <div class="foot">
-               
+                <p class="ftContent">Version 0.2.1</p>
                 <p class="ftContent">© 2024 Jonas Kummer</p>
             </div>
             
@@ -908,7 +909,8 @@
             alert("Sie sind dabei, in kettnerfreien Bereich einzudringen. Vorsicht!!! Sind sie autorisiert und möchten fortfahren? Ansonsten die erweiterten Einstellungen sofort wieder ausblenden!");
         }
         // wiederholungen verteilen
-        function repeat () {
+        document.getElementById("rpt").addEventListener("input", vRepeats);
+        function vRepeats() {
             let count = document.getElementById('rpt').value;
             var elements = document.getElementsByClassName("repeat");
             for(var i = 0; i < elements.length; i++) {
@@ -916,9 +918,10 @@
                 elements[i].value = count;
             }
         }
-        setInterval(repeat, 500);
+        vRepeats();
         //hintergrundeffekt verteilen
-        function eff () {
+        document.getElementById("eff").addEventListener("input", vEff)
+        function vEff () {
             let effectName = document.getElementById('eff').value;
             var elements = document.getElementsByClassName("effect");
             for(var i = 0; i < elements.length; i++) {
@@ -926,9 +929,10 @@
                 elements[i].value = effectName;
             }
         }
-        setInterval(eff, 500);
+        vEff();
         //farbe verteilen
-        function color () {
+        document.getElementById("farbe").addEventListener("input", vColor);
+        function vColor () {
             let farbcode = document.getElementById('farbe').value;
             var elements = document.getElementsByClassName("color");
             for(var i = 0; i < elements.length; i++) {
@@ -937,33 +941,34 @@
                 elements[i].value = modifiedColor;
             }
         }
-        setInterval(color, 500);
+        vColor();
         // autom uhrzeit
-        function zeiteingabe () {
+        document.getElementById("myP").addEventListener("input", aZeiteingabe)
+        function aZeiteingabe () {
             let html = document.getElementById("myP").value;
             document.getElementById("anzeigetext").value = 'ab '+ html + ' wieder erreichbar';
             //console.log(document.getElementById('anzeigetext').value);
-        }
-        setInterval(zeiteingabe, 500);
+        }        
         // autom Raum
-        function raumeingabe () {
+        document.getElementById("myN").addEventListener("input", aRaumeingabe)
+        function aRaumeingabe () {
             let nummer = document.getElementById("myN").value;
             document.getElementById("anzeigenummer").value = 'in Raum '+ nummer;
-            //console.log(document.getElementById('anzeigetext').value);
+            //console.log(document.getElementById('anzeigenummer').value);
         }
-        setInterval(raumeingabe, 500);
         // verteilen von scroll speed
-        function scrollSpeed () {
+        document.getElementById("set-scrollSpeed").addEventListener("input", vScrollSpeed)
+        function vScrollSpeed () {
             var elements = document.getElementsByClassName("scrollSpeed");
             //var names = '';
             for(var i = 0; i < elements.length; i++) {
                 let speed = document.getElementById("set-scrollSpeed").value;
                 elements[i].value = speed;
+                //console.log(speed)
             }
-            //console.log(elements.value)
         }
-        setInterval(scrollSpeed, 500);
-
+        vScrollSpeed();
+        /*
         // icon zum text hinzufügen
         function icon0 () {
             var elements = document.getElementsByClassName("icon");
@@ -1000,6 +1005,7 @@
             }
         }
         /*
+        /*
         // funktioniert noch am warscheinlichsten
         function iconpush () {
             var elements = document.getElementsByClassName("icon");
@@ -1013,7 +1019,7 @@
         }
         //setInterval(iconpush, 10);
        */
-       
+        /*
         // ändern der hintergrundfarbe der aktiven icons buttons
         let buttons = document.querySelectorAll(".iconBtn");
         document.addEventListener("click", function(evt){
@@ -1024,6 +1030,7 @@
             evt.target.classList.add("active");
             }
         });
+        */
         // ändern Hintergrund des als letztes ausgewählten textes
         let text = document.querySelectorAll(".text-select");
         document.addEventListener("click", function(evts){
@@ -1078,7 +1085,7 @@
                 console.log(data);
         
                 //postData("http://10.31.193.228/" + formdata[0][1], data);
-                postData("http://earlgreyhot.ddns.net:60422/" + formdata[0][1], data);
+                postData("http://earlgreyhot.ddns.net:60412/" + formdata[0][1], data);
             })
     
         })
