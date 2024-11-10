@@ -210,19 +210,26 @@
         }
         .allText{
             background: var(--block);
-            margin: 15px;
-            padding: 10px;
+            padding: 25px;
             border-radius: 12px;
             margin-top: 0;
             padding-top: 0;
+            padding-bottom: 0;
+            max-width: 800px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .allSettings{
             background: var(--block);
-            margin: 15px;
-            padding: 10px;
+            padding: 25px;
             border-radius: 12px;
             margin-bottom: 0;
             padding-bottom: 0;
+            max-width: 800px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .category{
             background: var(--section);
@@ -354,7 +361,7 @@
         <h1>Türschild Raum 414</h1>
     </div>
     
-    <div>
+    <div class="mobileViewOnPC">
         <!--
         <div class="select margin-left">
             <select id="standard-select">
@@ -545,13 +552,12 @@
                         <form class="changeApp">
                             <input id="url" type="hidden" name="url" value="api/switch">
                             <input type="hidden" name="name" value="App1">
-                            <button value="Submit" type="submit" class="button-9">Informationstext anzeigen</button>
+                            <button value="Submit" type="submit" class="button-9" id="autoClickable">Informationstext anzeigen</button>
                         </form>
                     </div>
                 </div>
                 <div class="category">
                     <h4>Live View: </h4>
-                    <h7>(Wenn die Anzeige ausgeschalten wird, bleibt die Live View trotzdem an.)</h7>
                     <div class="live">
                         <iframe src="http://earlgreyhot.ddns.net:60412/screen" frameborder="0" scrolling="no"></iframe>
                     </div>
@@ -895,14 +901,10 @@
                 <a href="html/index_original.html">zur originalwebsite</a>
             </div>
             <div class="foot">
-                <p class="ftContent">Version 0.2.1</p>
+                <p class="ftContent">Version 0.2.2</p>
                 <p class="ftContent">© 2024 Jonas Kummer</p>
-            </div>
-            
-    </div>   
-    
-    
-    
+            </div>            
+    </div>       
     <script>
         // warnung kettnerfreier Bereich
         function warning() {
@@ -1061,6 +1063,14 @@
             x.style.display = "none";
         }
         } 
+        // automatisch zur Text-App springen wenn ein beliebiger text abgeschickt wird
+        let sensors = document.getElementsByClassName("text-select")
+        for(var i = 0; i < sensors.length; i++) {
+                sensors[i].addEventListener("click", jumpToText);
+            }
+        function jumpToText(){
+            document.getElementById("autoClickable").click();
+        }
         // abschicken
         async function postData(url = "", data = {}) {
             // Default options are marked with *
@@ -1069,9 +1079,7 @@
                 body: JSON.stringify(JSON.parse(JSON.stringify(data), (k, v) => v === "true" ? true : v === "false" ? false : v)), // body data type must match "Content-Type" header
             });
             return response.text(); // parses JSON response into native JavaScript objects
-        }
-    
-    
+        }    
         document.querySelectorAll('form').forEach(f => {
             
             f.addEventListener('submit', (event) => {
@@ -1086,6 +1094,7 @@
         
                 //postData("http://10.31.193.228/" + formdata[0][1], data);
                 postData("http://earlgreyhot.ddns.net:60412/" + formdata[0][1], data);
+                //postData("http://192.168.0.21/" + formdata[0][1], data);
             })
     
         })
