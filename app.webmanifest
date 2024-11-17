@@ -1,9 +1,32 @@
 {
-    "name": "Jonas Kummer Solutions",
-    "short_name": "JKS",
-    "theme_color": "#2196f3",
-    "background_color": "#2196f3",
-    "display": "standalone",
-    "scope": "/",
-    "start_url": "/"
-  }
+   "name": "Tuerschild Raum 414 Siegmar Kettner",
+   "short_name": "Display",
+   "theme_color": "#3c978e",
+   "background_color": "#3c3c3c",
+   "display": "standalone",
+   "scope": "/workspace/",
+   "start_url": "/workspace/ulanziclock_test/kettnerHoehle.html",
+   "id": "/workspace/ulanziclock_test/kettnerHoehle.html",
+   "icons": [
+    {
+       "src": "icons/finalLogo.png",
+       "type": "image/png",
+       "sizes": "512x512"
+    }
+    ],
+    "screenshots": [    
+    {
+      "src": "icons/desktop1899x922.png",
+       "sizes": "1899x922",
+       "type": "image/png",
+       "form_factor": "wide",
+       "label": "Application"
+     },{
+      "src": "icons/mobile621x832.png",
+       "sizes": "621x832",
+       "type": "image/png",
+       "form_factor": "narrow",
+       "label": "Application"
+     }
+    ]
+ }
