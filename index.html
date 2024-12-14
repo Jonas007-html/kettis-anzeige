@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="app.webmanifest">
+    <title>Kettis Türschild</title>
+    <style>
+        :root {
+            --select-border: #777;
+            --select-focus: rgb(0, 0, 255);
+            --select-arrow: var(--select-border);
+            --active: rgb(244, 138, 0);
+            --block: rgba(147, 147, 147, 0);
+            --section: rgb(248, 248, 248);
+            --alert: rgb(255, 0, 0);
+            --color: rgb(48, 217, 48);
+            --text: rgb(44, 44, 238);
+            --transition: rgb(188, 0, 141);
+            --time: rgb(174, 177, 172);
+        }
+        *{
+            font-family: poppins;
+        }
+        html, body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #3c3c3c;
+        }
+        h1{
+            text-align: center;
+            color: white;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .fixed-header{
+            position: sticky;
+            top: 0;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            margin-bottom: 8px;
+            display: block;
+            background: rgb(60, 60, 60);
+            z-index: 10000000;
+            filter: drop-shadow(0px 10px 5px #3d3d3d);
+           
+        }
+        h4{
+            color: rgb(53, 47, 47);
+            text-decoration-color: black;
+            margin: 13px;
+        }
+        h7{
+            color: rgb(53, 47, 47);
+            text-decoration-color: black;
+            margin: 13px;
+        }
+        h3{
+            color: rgb(236, 236, 236);
+        }
+        select{
+            background: #3c978e;
+            color: white;
+            padding: 8px;
+            font-size: 1em;
+            border: 3px solid var(--section);
+            border-radius: 8px;
+        }
+        select:focus:active:focus-within{
+            border-color: var(--section);
+        }
+        .button-9 {
+            appearance: button;
+            backface-visibility: hidden;
+            background-color: #3c978e;
+            border-radius: 6px;
+            border-width: 0;
+            box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+            font-size: 100%;
+            height: 44px;
+            line-height: 1.15;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            margin-left: 5px;
+            margin-right: 5px;
+            outline: none;
+            overflow: hidden;
+            padding: 0 25px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            transform: translateZ(0);
+            transition: all .2s,box-shadow .08s ease-in;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-9:disabled {
+            cursor: default;
+        }
+
+        .button-9:focus {
+            box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+        }
+        .zentrieren{
+            max-width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+        .ausgeblendet{
+            display: none;
+        }
+        .linie{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--section);
+            border-radius: 10px;
+            margin: 0px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            padding: 5px;
+        }
+        .line{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--time);
+            border-radius: 10px;
+            margin: 0px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            padding: 5px;
+        }
+        .zeiteingabe{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 70%;
+        }
+        .individualTexteingabe{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+        .headliner{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .rechtsbuendig{
+            margin-right: 0;
+            position: relative;
+            margin-left: auto;
+        }
+        button.iconBtn.active { 
+        background-color: var(--active); 
+        }
+        button.text-select.active { 
+        background-color: var(--active); 
+        }
+        button.change.active { 
+        background-color: var(--active); 
+        }
+        .live{
+            display: flex;
+            justify-content: center;
+            background: rgba(119, 119, 119, 0);
+            padding: 10px;
+            border-radius: 12px;
+        
+        }
+        /*
+        iframe{
+           width: calc(5vw*16);
+           height: calc(5vw*6.27);
+           max-width: 800px;
+           max-height: 250px;
+        }
+        */
+        @media only screen and (max-width: 600px) {
+           iframe{
+            width: auto;
+           }
+        }
+        @media only screen and (min-width: 600px) {
+           iframe{
+           width: calc(5vw*16);
+           height: calc(5vw*6.27);
+           max-width: 800px;
+           max-height: 250px;
+            }
+        }
+        @media only screen and (max-width: 390px) {
+           iframe{
+            width: 250px;
+            height: 150px;
+            }
+        }
+        .allText{
+            background: var(--block);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            max-width: 800px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .allSettings{
+            background: var(--block);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            max-width: 800px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .category{
+            background: var(--section);
+            margin: 0px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            padding: 5px;
+            border-radius: 12px;
+        }
+        .margin-left{
+            margin-left: 25px;
+        }
+        .zwischenueberschrift{
+            margin: 0;
+        }
+        .fast{
+            width: 171px;
+        }
+        .iconBtn{
+            width: 138px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+            /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        .allSettings.secret{
+            margin: 15px;
+            padding: 10px;
+            border-radius: 12px;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        .advanced{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--alert);
+            border-radius: 10px;
+            margin: 0px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            padding: 5px;
+        }
+        .hidden{
+            display: none;
+        }
+        .redBack{
+            color: rgb(255, 255, 255);
+        }
+        .col{
+            background: var(--color);
+        }
+        .txt{
+            background-color: var(--text);
+        }
+        .trans{
+            background-color: var(--transition);
+        }
+        .foot{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .ftContent{
+            margin: 10px;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fixed-header">
+        <h1>Türschild Raum 414</h1>
+    </div>
+    
+    <div class="mobileViewOnPC">
+        <!--
+        <div class="select margin-left">
+            <select id="standard-select">
+              <option value="Option 1">Information 1</option>
+              <option value="Option 2">Information 2</option>
+              <span class="focus"></span>
+            </select>
+        </div>
+        -->
+        
+            <div class="allText">
+                <!--<h3 class="zwischenueberschrift">Informationstext</h3>-->
+                <!--
+                <div class="headliner">
+                    <div>
+                        <h4 class="redBack">Icons:</h4>
+                    </div>
+                    <div class="rechtsbuendig">
+                        <form>
+                            <input type="hidden" name="icon" value="-1" id="iconNumber">
+                            <button class="button-9 iconBtn active" id="button-9" onclick="icon0()" style="width: unset; border-radius: 19px;">kein Icon</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="category">
+                     
+                    <div class="zentrieren">
+                        <form>
+                            <input type="hidden" name="icon" value="25780" id="iconNumber1">
+                            <button class="button-9 iconBtn" id="button-9" onclick="icon1()">Deutschland</button>
+                        </form>
+                        <form>
+                            <input type="hidden" name="icon" value="60171" id="iconNumber2">
+                            <button class="button-9 iconBtn" id="button-9" onclick="icon2()">NBS-Logo</button>
+                        </form>
+                        <form>
+                            <input type="hidden" name="icon" value="39863" id="iconNumber3">
+                            <button class="button-9 iconBtn" id="button-9" onclick="icon3()">China</button>
+                        </form>
+                        <form>
+                            <input type="hidden" name="icon" value="46056" id="iconNumber4">
+                            <button class="button-9 iconBtn" id="button-9" onclick="icon4()">Spanien</button>
+                        </form>
+                    </div>
+                </div>
+                -->
+                <div>
+                    <h4 class="redBack">Text:</h4>
+                </div>
+                <div class="zentrieren category">
+                    <form>
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
+                        <input type="hidden" name="repeat" class="repeat" value="">
+                        <input type="hidden" name="text" value="außer Haus">
+                        <button class="button-9 text-select fast" id="button-9" role="button">außer Haus</button>
+                    </form>
+                    <form>
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
+                        <input type="hidden" name="repeat" class="repeat" value="">
+                        <input type="hidden" name="text" value="bitte nicht stören">
+                        <button class="button-9 text-select fast" id="button-9" role="button">bitte nicht stören</button>
+                    </form>
+                    <form>
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
+                        <input type="hidden" name="repeat" class="repeat" value="">
+                        <input type="hidden" name="text" value="gleich zurück">
+                        <button class="button-9 text-select fast" role="button">gleich zurück</button>
+                    </form>
+                    <form>
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
+                        <input type="hidden" name="repeat" class="repeat" value="">
+                        <input type="hidden" name="text" value="Anwesend">
+                        <button class="button-9 text-select fast" role="button">Anwesend</button>
+                    </form>
+                           </div>
+                <div class="linie">
+                    <form class="zeiteingabe">
+                        <label for="myP">ab</label>
+                        <input type="time" id="myP" name="text">
+                        <label for="myP">wieder erreichbar</label>
+                    </form>
+                    <form>
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="anzeigetext" value="" name="text" class="ausgeblendet">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
+                        <input type="hidden" name="repeat" class="repeat" value="">
+                        <button class="button-9 text-select" id="button-9">abschicken</button>
+                    </form>
+                </div>
+                <div class="linie">
+                    <form class="zeiteingabe">
+                        <label for="myN">in Raum</label>
+                        <input type="text" id="myN" name="text" placeholder="522">
+                    </form>
+                    <form>
+                        <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
+                        <input id="anzeigenummer" value="" name="text" class="ausgeblendet">
+                        <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                        <input type="hidden" name="color" id="color" class="color" value="">
+                        <input type="hidden" name="icon" id="icon" class="icon" value="">
+                        <input type="hidden" name="effect" class="effect" value="">
+                        <input type="hidden" name="repeat" class="repeat" value="">
+                        <button class="button-9 text-select" id="button-9">abschicken</button>
+                    </form>
+                </div>
+                <div class="linie">
+                    
+                    <form class="individualTexteingabe">
+                        <div class="zeiteingabe">
+                            <label for="individual_text">individueller Text:</label>
+                            <input id="url" class="defaultApp" type="hidden" name="url" value="api/custom?name=App1">
+                            <input id="individual_text" value="" name="text" placeholder="Heute ist Hitzefrei">
+                            <input type="hidden" name="scrollSpeed" id="scrollSpeed" class="scrollSpeed" value="">
+                            <input type="hidden" name="color" id="color" class="color" value="">
+                            <input type="hidden" name="icon" id="icon" class="icon" value="">
+                            <input type="hidden" name="effect" class="effect" value="">
+                            <input type="hidden" name="repeat" class="repeat" value="">
+                        </div>
+                        <div><button class="button-9 text-select" id="button-9">abschicken</button></div>
+                    </form>
+                </div>
+            </div>
+            <div class="allSettings">
+                <h3 class="zwischenueberschrift">Einstellungen:</h3>
+                <div class="category">
+                    <h4>Power:</h4>
+                    <div class="zentrieren">
+                        <form>
+                            <input id="url" type="hidden" name="url" value="api/power">
+                            <input type="hidden" name="power" value="true">
+                            <button class="button-9" id="button-9">Anschalten</button>
+                        </form>
+                        <form>
+                            <input id="url" type="hidden" name="url" value="api/power">
+                            <input type="hidden" name="power" value="false">
+                            <button class="button-9" id="button-9">Auschalten</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="category">
+                    <h4>automatischer App-Wechsel:</h4>
+                    <div class="zentrieren">
+                        <form>
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <input type="hidden" name="ATRANS" value="true">
+                            <button class="button-9 change" id="button-9" style="width: 125px;">Aktiviert</button>
+                        </form>
+                        <form>
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <input type="hidden" name="ATRANS" value="false" selected="">
+                            <button class="button-9 change active" id="button-9">Deaktiviert</button>
+                        </form>
+                    </div>
+                   
+                </div>
+                <div class="category">
+                    <h4>Steuerung:</h4>
+                    <div class="zentrieren">
+                        <form class="changeApp">
+                            <input id="url" type="hidden" name="url" value="api/previousapp">
+                            <button class="button-9">Vorherige App</button>
+                        </form>
+                        <form class="changeApp">
+                            <input id="url" type="hidden" name="url" value="api/nextapp">
+                            <button class="button-9" style="width: 152px;">Nächste App</button>
+                        </form>
+                    </div>
+                    <div class="zentrieren">
+                        <form class="changeApp">
+                            <input id="url" type="hidden" name="url" value="api/switch">
+                            <input type="hidden" name="name" value="App1">
+                            <button value="Submit" type="submit" class="button-9" id="autoClickable">Informationstext anzeigen</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="category">
+                    <h4>Live View: </h4>
+                    <div class="live">
+                        <iframe src="http://earlgreyhot.ddns.net:60412/screen" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+                <div class="linie">
+                    <div class="activate">
+                        <p>erweiterte Einstellungen anzeigen</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round" onclick="hide()"></span>
+                    </label>                  
+                </div>
+            </div>
+        
+            <div class="allSettings secret" id="secret" style="display: none;">
+                <h3>Zurücksetzen / Reboot</h3>
+                <div class="advanced">
+                    <h4 class="redBack">Einstellungen zurücksetzen</h4>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/resetSettings">
+                        <button class="button-9">Reset</button>
+                    </form>
+                </div>
+                <div class="advanced">
+                    <h4 class="redBack">Anzeige neu starten</h4>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/reboot">
+                        <button class="button-9">Reboot</button>
+                    </form>
+                </div>
+                <div class="advanced">
+                    <h4 class="redBack">Tastenfunktionalität Ein-/Ausschalten</h4>
+                    <form>
+                        <input id="url" type="hidden" name="url" value="api/settings">                       
+                    </form>
+                    <form class="">
+                        <input id="url" type="hidden" name="url" value="api/settings">
+                        <input type="hidden" name="BLOCKN" value="false">
+                        <button value="Submit" type="submit" class="button-9">Tasten reagieren</button>
+                    </form>
+                    <form class="">
+                        <input id="url" type="hidden" name="url" value="api/settings">
+                        <input type="hidden" name="BLOCKN" value="true">
+                        <button value="Submit" type="submit" class="button-9">Tasten reagieren nicht</button>
+                    </form>
+                </div>
+                <div>
+                    <h3>Einmalige Einstellungen</h3>
+                    <div class="advanced txt">
+                        <h4 class="redBack">Textfarbe</h4>
+                        <form>
+                            <input type="color" class="farbe" id="farbe" value="#ffffff">
+                        </form>
+                    </div>
+                    <div class="advanced txt">
+                        <h4 class="redBack">Hintergrundeffekt</h4>
+                        <form>
+                            <select name="effect" id="eff">
+                                <option value="">-</option>
+                                <option value="TwinklingStars">TwinklingStars</option>
+                                <option value="PlasmaCloud">PlasmaCloud</option>
+                                <option value="ColorWaves">ColorWaves</option>
+                                <option value="Matrix">Matrix</option>
+                                <option value="SwirlOut">SwirlOut</option>
+                                <option value="LookingEyes">LookingEyes</option>
+                                <option value="BrickBreaker">BrickBreaker</option>
+                                <option value="PingPong">PingPong</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="advanced txt">
+                        <h4 class="redBack">Scroll speed</h4>
+                        <form>
+                            <input type="number" min="50" max="330" step="10" value="140" id="set-scrollSpeed">
+                        </form>
+                    </div>
+                    <div class="advanced txt">
+                        <h4 class="redBack">Wiederholungen<br>(wenn definiert automatischer App wechsel anschalten!)</h4>
+                        <form>
+                            <select name="repeat" id="rpt">
+                                <option value="-1" selected="">für immer wiederholen</option>
+                                <option value="1">1 mal</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="advanced trans">  
+                        <h4 class="redBack">Dauer der Übergänge</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <input type="range" name="TSPEED" min="100" max="2000" step="100" value="500">
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>          
+                    <div class="advanced trans">
+                        <h4 class="redBack">Übergangseffekt</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="TEFF">
+                                <option value="0">Random</option>
+                                <option value="1" selected="">Slide</option>
+                                <option value="2">Dim</option>
+                                <option value="3">Zoom</option>
+                                <option value="4">Rotate</option>
+                                <option value="5">Pixelate</option>
+                                <option value="6">Curtain</option>
+                                <option value="7">Ripple</option>
+                                <option value="8">Blink</option>
+                                <option value="9">Reload</option>
+                                <option value="10">Fade</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>          
+                    <div class="advanced">
+                        <h4 class="redBack">Dateformats</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="DFORMAT">
+                                <option value="%d.%m.%y">16.04.22</option>
+                                <option value="%d.%m">16.04</option>
+                                <option value="%y-%m-%d">22-04-16</option>
+                                <option value="%m-%d">04-16</option>
+                                <option value="%m/%d/%y">04/16/22</option>
+                                <option value="%m/%d">04/16</option>
+                                <option value="%d/%m/%y">16/04/22</option>
+                                <option value="%d/%m">16/04</option>
+                                <option value="%m-%d-%y">04-16-22</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>       
+                    <div class="advanced">
+                        <h4 class="redBack">Helligkeit</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <input type="range" min="1" max="255" step="10" name="BRI" value="30">
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>        
+                    <div class="advanced col">
+                        <h4 class="redBack">Date App Text-Farbe</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="DATE_COL">
+                                <option value="ffffff">weiß</option>
+                                <option value="ff0000">rot</option>
+                                <option value="00ff00">grün</option>
+                                <option value="0000ff">blau</option>
+                                <option value="ffff00">gelb</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>        
+                    <div class="advanced col">
+                        <h4 class="redBack">Temperature App Text-Farbe</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="TEMP_COL">
+                                <option value="ffffff">weiß</option>
+                                <option value="ff0000">rot</option>
+                                <option value="00ff00">grün</option>
+                                <option value="0000ff">blau</option>
+                                <option value="ffff00">gelb</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>
+                    <div class="advanced col">
+                        <h4 class="redBack">Humidity App Text-Farbe</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="HUM_COL">
+                                <option value="ffffff">weiß</option>
+                                <option value="ff0000">rot</option>
+                                <option value="00ff00">grün</option>
+                                <option value="0000ff">blau</option>
+                                <option value="ffff00">gelb</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>
+                    <div class="advanced col">
+                        <h4 class="redBack">Battery App Text-Farbe</h4>
+                        <form class="two">
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <select name="BAT_COL">
+                                <option value="ffffff">weiß</option>
+                                <option value="000000">schwarz</option>
+                                <option value="ff0000">rot</option>
+                                <option value="00ff00">grün</option>
+                                <option value="0000ff">blau</option>
+                                <option value="ffff00">gelb</option>
+                            </select>
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <h3>Time-App Settings</h3>
+                    <div class="advanced">
+                        <form>
+                            <input id="url" type="hidden" name="url" value="api/settings">
+                            <div class="line">
+                                <p>Time app Farbe</p>
+                                <select name="TIME_COL">
+                                    <option value="ffffff">weiß</option>
+                                    <option value="ff0000">rot</option>
+                                    <option value="00ff00">grün</option>
+                                    <option value="0000ff">blau</option>
+                                    <option value="ffff00">gelb</option>
+                                </select>
+                            </div>                           
+                            <div class="line">
+                                <p>calendar header color-funktioniert nur bei timestyle 1</p>
+                                <select name="CHCOL">
+                                    <option value="ffffff">weiß</option>
+                                    <option value="000000">schwarz</option>
+                                    <option value="ff0000" selected="">rot</option>
+                                    <option value="00ff00">grün</option>
+                                    <option value="0000ff">blau</option>
+                                    <option value="ffff00">gelb</option>
+                                </select>
+                            </div>                            
+                            <div class="line">
+                                <p>calendar body color</p>
+                                <select name="CBCOL">
+                                    <option value="ffffff" selected="">weiß</option>
+                                    <option value="000000">schwarz</option>
+                                    <option value="ff0000">rot</option>
+                                    <option value="00ff00">grün</option>
+                                    <option value="0000ff">blau</option>
+                                    <option value="ffff00">gelb</option>
+                                </select>
+                            </div>                         
+                            <div class="line">
+                                <p>calendar text color</p>
+                                <select name="CTCOL">
+                                    <option value="ffffff">weiß</option>
+                                    <option value="000000" selected="">schwarz</option>
+                                    <option value="ff0000">rot</option>
+                                    <option value="00ff00">grün</option>
+                                    <option value="0000ff">blau</option>
+                                    <option value="ffff00">gelb</option>
+                                </select>
+                            </div>                            
+                            <div class="line">
+                                <p>Timestyles</p>
+                                <select name="TMODE">
+                                    <option value="0">0</option>
+                                    <option value="1" selected="">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>                           
+                            <div class="line">
+                                <p>Timeformats (erste 2 nur bei timestyle 0 möglich)</p>
+                                <select name="TFORMAT">
+                                    <option value="%H:%M:%S">13:30:45</option>
+                                    <option value="%l:%M:%S ">1:30:45</option>
+                                    <option value="%H:%M">13:30</option>
+                                    <option value="%H %M">13.30 with blinking colon</option>
+                                    <option value="%l:%M">1:30</option>
+                                    <option value="%l %M">1:30 with blinking colon</option>
+                                    <option value="%l:%M %p">1:30 PM</option>
+                                    <option value="%l %M %p">1:30 PM with blinking colon</option>
+                                </select>
+                            </div>                            
+                            <div class="line">
+                                <p>anschließender reboot vorausgesetzt:</p>
+                                <select name="TIM">
+                                    <option value="true" selected="">Time app anzeigen</option>
+                                    <option value="false">Time app ausblenden</option>
+                                </select>
+                            </div>                                
+                            <input type="hidden" name="stack" value="false">
+                            <button value="Submit" type="submit" class="button-9">Aktualisieren</button>
+                        </form>
+                    </div>
+                    <h3>Apps deaktivieren / aktivieren</h3>
+                    <div class="advanced">
+                        <h4 class="redBack">Apps deaktivieren (Reboot required)</h4>
+                        <div class="zentrieren">
+                            <form class="changeApp">
+                                <input id="url" type="hidden" name="url" value="api/settings">
+                                <input type="hidden" name="HUM" value="false">
+                                <button value="Submit" type="submit" class="button-9">Humidity app deaktivieren</button>
+                            </form>
+                            <form class="changeApp">
+                                <input id="url" type="hidden" name="url" value="api/settings">
+                                <input type="hidden" name="DAT" value="false">
+                                <button value="Submit" type="submit" class="button-9">Date app deaktivieren</button>
+                            </form>
+                            <form class="changeApp">
+                                <input id="url" type="hidden" name="url" value="api/settings">
+                                <input type="hidden" name="TEMP" value="false">
+                                <button value="Submit" type="submit" class="button-9">Temperature app deaktivieren</button>
+                            </form>
+                            <form class="changeApp">
+                                <input id="url" type="hidden" name="url" value="api/settings">
+                                <input type="hidden" name="BAT" value="false">
+                                <button value="Submit" type="submit" class="button-9">Battery app deaktivieren</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="advanced">
+                        <h4 class="redBack">Apps aktivieren (reboot required außer bei "App 1 aktivieren")</h4>
+                        <div class="zentrieren">
+                            <form class="changeApp">
+                                <input id="url" type="hidden" name="url" value="api/switch">
+                                <input type="hidden" name="name" value="App1">
+                                <button value="Submit" type="submit" class="button-9">App1 aktivieren</button>
+                            </form>                        
+                            <form class="changeApp">
+                                <input id="url" type="hidden" name="url" value="api/settings">
+                                <input type="hidden" name="HUM" value="true">
+                                <button value="Submit" type="submit" class="button-9">Humidity app aktivieren</button>
+                            </form>
+                            <form class="changeApp">
+                                <input id="url" type="hidden" name="url" value="api/settings">
+                                <input type="hidden" name="DAT" value="true">
+                                <button value="Submit" type="submit" class="button-9">Date app aktivieren</button>
+                            </form>
+                            <form class="changeApp">
+                                <input id="url" type="hidden" name="url" value="api/settings">
+                                <input type="hidden" name="TEMP" value="true">
+                                <button value="Submit" type="submit" class="button-9">Temperature app aktivieren</button>
+                            </form>
+                            <form class="changeApp">
+                                <input id="url" type="hidden" name="url" value="api/settings">
+                                <input type="hidden" name="BAT" value="true">
+                                <button value="Submit" type="submit" class="button-9">Battery app aktivieren</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <a href="html/index_original.html">zur originalwebsite</a>
+            </div>
+            <div class="foot">
+                <p class="ftContent">Version 0.2.2</p>
+                <p class="ftContent">© 2024 Jonas Kummer</p>
+            </div>            
+    </div>       
+    <script>
+        // warnung kettnerfreier Bereich
+        function warning() {
+            alert("Sie sind dabei, in kettnerfreien Bereich einzudringen. Vorsicht!!! Sind sie autorisiert und möchten fortfahren? Ansonsten die erweiterten Einstellungen sofort wieder ausblenden!");
+        }
+        // wiederholungen verteilen
+        document.getElementById("rpt").addEventListener("input", vRepeats);
+        function vRepeats() {
+            let count = document.getElementById('rpt').value;
+            var elements = document.getElementsByClassName("repeat");
+            for(var i = 0; i < elements.length; i++) {
+                //console.log(count); 
+                elements[i].value = count;
+            }
+        }
+        vRepeats();
+        //hintergrundeffekt verteilen
+        document.getElementById("eff").addEventListener("input", vEff)
+        function vEff () {
+            let effectName = document.getElementById('eff').value;
+            var elements = document.getElementsByClassName("effect");
+            for(var i = 0; i < elements.length; i++) {
+                //console.log(effectName); 
+                elements[i].value = effectName;
+            }
+        }
+        vEff();
+        //farbe verteilen
+        document.getElementById("farbe").addEventListener("input", vColor);
+        function vColor () {
+            let farbcode = document.getElementById('farbe').value;
+            var elements = document.getElementsByClassName("color");
+            for(var i = 0; i < elements.length; i++) {
+                let modifiedColor  = farbcode.replace("#", "");
+                //console.log(modifiedColor); 
+                elements[i].value = modifiedColor;
+            }
+        }
+        vColor();
+        // autom uhrzeit
+        document.getElementById("myP").addEventListener("input", aZeiteingabe)
+        function aZeiteingabe () {
+            let html = document.getElementById("myP").value;
+            document.getElementById("anzeigetext").value = 'ab '+ html + ' wieder erreichbar';
+            //console.log(document.getElementById('anzeigetext').value);
+        }        
+        // autom Raum
+        document.getElementById("myN").addEventListener("input", aRaumeingabe)
+        function aRaumeingabe () {
+            let nummer = document.getElementById("myN").value;
+            document.getElementById("anzeigenummer").value = 'in Raum '+ nummer;
+            //console.log(document.getElementById('anzeigenummer').value);
+        }
+        // verteilen von scroll speed
+        document.getElementById("set-scrollSpeed").addEventListener("input", vScrollSpeed)
+        function vScrollSpeed () {
+            var elements = document.getElementsByClassName("scrollSpeed");
+            //var names = '';
+            for(var i = 0; i < elements.length; i++) {
+                let speed = document.getElementById("set-scrollSpeed").value;
+                elements[i].value = speed;
+                //console.log(speed)
+            }
+        }
+        vScrollSpeed();
+        /*
+        // icon zum text hinzufügen
+        function icon0 () {
+            var elements = document.getElementsByClassName("icon");
+            for(var i = 0; i < elements.length; i++) {
+                elements[i].value = document.getElementById("iconNumber").value;
+            }
+        }
+        
+        function icon1 () {
+            var elements = document.getElementsByClassName("icon");
+            for(var i = 0; i < elements.length; i++) {
+                elements[i].value = document.getElementById("iconNumber1").value;
+            }
+        }
+
+        function icon2 () {
+            var elements = document.getElementsByClassName("icon");
+            for(var i = 0; i < elements.length; i++) {
+                elements[i].value = document.getElementById("iconNumber2").value;
+            }
+        }
+
+        function icon3 () {
+            var elements = document.getElementsByClassName("icon");
+            for(var i = 0; i < elements.length; i++) {
+                elements[i].value = document.getElementById("iconNumber3").value;
+            }
+        }
+
+        function icon4 () {
+            var elements = document.getElementsByClassName("icon");
+            for(var i = 0; i < elements.length; i++) {
+                elements[i].value = document.getElementById("iconNumber4").value;
+            }
+        }
+        /*
+        /*
+        // funktioniert noch am warscheinlichsten
+        function iconpush () {
+            var elements = document.getElementsByClassName("icon");
+                for(var i = 0; i < elements.length; i++) {
+                    const iconNumber1 = document.querySelectorAll('#iconNumber');
+                    for(var j = 0; j < iconNumber1.length; j++) {
+                    elements[i].value =  46056;               //iconNumber[j].value;
+                    }
+                }
+            //console.log(elements.value);
+        }
+        //setInterval(iconpush, 10);
+       */
+        /*
+        // ändern der hintergrundfarbe der aktiven icons buttons
+        let buttons = document.querySelectorAll(".iconBtn");
+        document.addEventListener("click", function(evt){
+        if(evt.target.classList.contains("iconBtn")){
+            buttons.forEach(function(button){
+            button.classList.remove("active");
+            });
+            evt.target.classList.add("active");
+            }
+        });
+        */
+        // ändern Hintergrund des als letztes ausgewählten textes
+        let text = document.querySelectorAll(".text-select");
+        document.addEventListener("click", function(evts){
+        if(evts.target.classList.contains("text-select")){
+            text.forEach(function(texte){
+            texte.classList.remove("active");
+            });
+            evts.target.classList.add("active");
+            }
+        });
+        // ändern Hintergrundgarbe von autom. App wechsel
+        let appWechsel = document.querySelectorAll(".change");
+        document.addEventListener("click", function(app){
+        if(app.target.classList.contains("change")){
+            appWechsel.forEach(function(apps){
+            apps.classList.remove("active");
+            });
+            app.target.classList.add("active");
+            }
+        });
+        //anzeigen oder ausschalten von erweiterten Einstellungen
+        function hide() {
+        var x = document.getElementById("secret");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            warning();
+        } else {
+            x.style.display = "none";
+        }
+        } 
+        // automatisch zur Text-App springen wenn ein beliebiger text abgeschickt wird
+        let sensors = document.getElementsByClassName("text-select")
+        for(var i = 0; i < sensors.length; i++) {
+                sensors[i].addEventListener("click", jumpToText);
+            }
+        function jumpToText(){
+            document.getElementById("autoClickable").click();
+        }
+        // abschicken
+        async function postData(url = "", data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: "POST", // *GET, POST, PUT, DELETE, etc.
+                body: JSON.stringify(JSON.parse(JSON.stringify(data), (k, v) => v === "true" ? true : v === "false" ? false : v)), // body data type must match "Content-Type" header
+            });
+            return response.text(); // parses JSON response into native JavaScript objects
+        }    
+        document.querySelectorAll('form').forEach(f => {
+            
+            f.addEventListener('submit', (event) => {
+                event.preventDefault();
+            
+                var formdata = Array.from(new FormData(event.srcElement).entries())
+                data = formdata.reduce((m, [key, value]) => Object.assign(m, {
+                        [key]: value
+                    }), {})
+                    
+                console.log(data);
+        
+                //postData("http://10.31.193.228/" + formdata[0][1], data);
+                postData("http://earlgreyhot.ddns.net:60412/" + formdata[0][1], data);
+                //postData("http://192.168.0.21/" + formdata[0][1], data);
+            })
+    
+        })
+    </script>
+</body>
+</html>
